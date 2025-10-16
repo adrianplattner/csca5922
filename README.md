@@ -26,4 +26,3 @@ The key dependencies (such as `jupyterlab` and `ipykernel`) are declared in `pyp
 ### Project Artifacts
 
 - Notebook: [notebooks/report.ipynb](notebooks/report.ipynb)
-- Presentation (PDF): [docs/presentation.pdf](docs/presentation.pdf)
