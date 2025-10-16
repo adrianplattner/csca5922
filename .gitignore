@@ -4,3 +4,4 @@ __pycache__/
 data/vehicles.csv
 jupyter_lab.log
 flask_app.log
+reveal.log

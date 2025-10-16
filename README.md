@@ -1,5 +1,9 @@
 ## CSCA5922
 
+University of Colorado Boulder – CSCA5622  
+Author: Adrian Gomez  
+Contact: adrian.gomez-1@colorado.edu
+
 ### Python environment
 
 This repository uses [uv](https://docs.astral.sh/uv/) to manage the Python environment.
@@ -18,3 +22,8 @@ This repository uses [uv](https://docs.astral.sh/uv/) to manage the Python envir
    ```
 
 The key dependencies (such as `jupyterlab` and `ipykernel`) are declared in `pyproject.toml`. `uv sync` will resolve and install them into a local `.venv` directory.
+
+### Project Artifacts
+
+- Notebook: [notebooks/report.ipynb](notebooks/report.ipynb)
+- Presentation (PDF): [docs/presentation.pdf](docs/presentation.pdf)

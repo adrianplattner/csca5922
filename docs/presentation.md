@@ -3,13 +3,15 @@ title: "University of Colorado Boulder"
 subtitle: "CSCA5622 · Predicting Car Prices"
 author: "Adrian Gomez"
 theme: simple
+css: docs/styles/custom.css
 ---
 
 # Predicting Car Prices
 
 ### CSCA5622 · University of Colorado Boulder
 
-**Author:** Adrian Gomez\n\n**Contact:** Adrian.Gomez-1@colorado.edu
+**Author:** Adrian Gomez  
+**Contact:** Adrian.Gomez-1@colorado.edu
 
 ---
 
@@ -18,34 +20,25 @@ theme: simple
 - Used-car prices fluctuate across regions, seasons, and listing sites, making it hard to know a fair value.
 - Buyers risk overpaying for a vehicle, while sellers risk leaving money on the table.
 - A predictive model provides a market-grounded reference price, helping both parties negotiate confidently.
-- Accurate price estimates streamline buy/sell decisions and reduce the time spent searching listings.
+- Built on the Kaggle "Used Cars Dataset" to ground the model in real Craigslist listings.
 
 ---
 
-# Modeling Pipeline
+# Feature Selection
 
-- Filter listings to top 50 models, valid price range (USD $1k–$40k), and complete records for year/manufacturer/model/fuel.
-- Features: vehicle year (numeric) plus manufacturer, model, and fuel encoded via one-hot vectors.
-- 70/30 train–test split; evaluate with RMSE and R^2 to balance error magnitude and explained variance.
-- Persist pre-processing metadata (feature order, allowed categories) alongside the model for reproducibility.
+- Kept the interface lightweight by limiting inputs to four variables.
+- **Year**: numeric signal capturing depreciation and generation updates.
+- **Manufacturer** and **Model**: categorical pair anchoring vehicle identity.
+- **Fuel**: captures price differences across gas, diesel, hybrid, etc.
 
 ---
 
-# Algorithms Evaluated
+# Models Evaluated
 
 - **Linear Regression** baseline to gauge linear signal strength.
 - **Ridge Regression (RidgeCV)** with cross-validated $\alpha$ to stabilize coefficients.
 - **AdaBoost Regressor** to capture boosted tree interactions.
 - **Random Forest Regressor** (300 estimators, tuned splits) delivered the most stable test RMSE/R^2 and powers the app.
-
----
-
-# Application Method
-
-- Flask service loads the persisted random forest bundle and preprocessing metadata.
-- Dependent dropdowns enforce valid manufacturer → model → year combinations from the training data.
-- Incoming requests are one-hot encoded using the saved feature layout before inference.
-- Endpoint returns price predictions in real time, keeping results consistent with the trained pipeline.
 
 ---
 
@@ -62,3 +55,9 @@ theme: simple
 - Random forest improves test RMSE by ~33% compared to the linear family models.
 - Ridge regression mirrors the baseline, confirming modest linear signal without strong regularization gains.
 - Tree ensembles without tuning (AdaBoost) underperform, while random forest generalizes best and powers the app.
+
+---
+
+# Demo
+
+*Live prediction walk-through using the Flask web app.*
