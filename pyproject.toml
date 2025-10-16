@@ -7,6 +7,12 @@ requires-python = ">=3.11"
 dependencies = [
     "ipykernel",
     "jupyterlab",
+    "pandas",
+    "kagglehub",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn",
+    "flask",
 ]
 
 [build-system]

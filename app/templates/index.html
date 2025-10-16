@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Craigslist Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Craigslist Price Prediction</h1>
+        <p>
+          Estimate the listing price for popular vehicles using a trained random forest model.
+          Select a manufacturer, model, year, and fuel type to generate a prediction.
+        </p>
+      </header>
+
+      <section class="card">
+        <form id="prediction-form">
+          <div class="form-row">
+            <label for="manufacturer">Manufacturer</label>
+            <select id="manufacturer" name="manufacturer" required>
+              <option value="" selected disabled>Choose manufacturer…</option>
+              {% for manufacturer in manufacturer_options %}
+                <option value="{{ manufacturer }}">{{ manufacturer|title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="model">Model</label>
+            <select id="model" name="model" required disabled>
+              <option value="" selected disabled>Select manufacturer first</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="year">Model Year</label>
+            <select id="year" name="year" required disabled>
+              <option value="" selected disabled>Select model first</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="fuel">Fuel</label>
+            <select id="fuel" name="fuel" required>
+              <option value="" selected disabled>Choose fuel…</option>
+              {% for option in fuel_options %}
+                <option value="{{ option }}">{{ option|title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit">Predict Price</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="prediction-result" class="card result hidden">
+        <h2>Estimated Price</h2>
+        <p class="value" id="predicted-price"></p>
+      </section>
+
+      <section id="prediction-error" class="card error hidden">
+        <h2>Unable to Predict</h2>
+        <p id="error-message"></p>
+      </section>
+    </main>
+
+    <script>
+      const MANUFACTURER_MODELS = {{ manufacturer_model_map | tojson }};
+      const YEAR_OPTIONS = {{ year_options | tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+  </body>
+</html>
