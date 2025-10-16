@@ -2,3 +2,5 @@
 __pycache__/
 .ipynb_checkpoints/
 data/vehicles.csv
+jupyter_lab.log
+flask_app.log
